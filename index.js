@@ -2,7 +2,8 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
 const app = express();
-
+const SettingsBill = require("./settingsBill")
+const settingsBill = SettingsBill();
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
@@ -22,7 +23,10 @@ app.get(("/"), function (req, res) {
 });
 
 app.post(("/settings"), function (req, res) {
-    console.log(req.body)
+    
+    settingsBill.setSettings({callCost: req.body.callCost});
+    console.log(settingsBill.getSettings());
+
     res.redirect("/")
 });
 

@@ -81,7 +81,32 @@ let billWithSettingsFunction = function(){
         return "critical"
     }
 
+
+    var setSettings = function(settings){
+      smsCost = Number(settings.smsCost);
+      callCost = Number(settings.callCost);
+      warningLevel = settings.warningLevel;
+      criticalLevel = settings.criticalLevels;
+
+    }
+ var getSettings= function(){
+     return{
+         smsCost,
+         callCost,
+         warningLevel,
+         criticalLevel,
+     }
+ }
  
+ var recordAction =function(action){
+     let cost = 0;
+     if (action ==="sms"){
+         cost = smsCost;
+     }
+     else if (action ==="call"){
+        cost = callCost;
+    }
+ };
 
 
 
@@ -103,6 +128,9 @@ return{
     upDateCritical,
     theWarningLevel,
     theCriticalLevel,
+    setSettings,
+    getSettings,
+    recordAction,
 }
 };
 
