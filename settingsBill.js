@@ -6,6 +6,11 @@ let billWithSettingsFunction = function(){
     let totalSmsCost = 0;
     let warningSetting = 0;
     let criticalSetting = 0;
+    let  smsCost;
+    let  callCost;
+    let  warningLevel;
+    let  criticalLevel;
+    let actionList = [];
 
     let setCallCost = function(callCost) {
         callCostSetting = callCost;
@@ -85,11 +90,13 @@ let billWithSettingsFunction = function(){
     var setSettings = function(settings){
       smsCost = Number(settings.smsCost);
       callCost = Number(settings.callCost);
-      warningLevel = settings.warningLevel;
-      criticalLevel = settings.criticalLevel;
+      warningLevel = Number (settings.warningLevel);
+      criticalLevel = Number (settings.criticalLevel);
 
+      getSettings(smsCost, callCost, warningLevel,criticalLevel)
     }
- var getSettings= function(){
+
+ var getSettings = function(){
      return{
          smsCost,
          callCost,

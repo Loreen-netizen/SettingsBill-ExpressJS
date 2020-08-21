@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const SettingsBill = require("./settingsBill")
 const settingsBill = SettingsBill();
-app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+app.engine('handlebars', handlebars({ defaultLayout: './views/layouts/main' }));
 app.set('view engine', 'handlebars');
 
 let PORT = process.env.PORT || 3508;
@@ -16,17 +16,18 @@ app.listen(PORT, function () {
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.get(("/"), function (req, res) {
-    res.render("index");
+    res.render("index",{settings:settingsBill.getSettings()}
+    );
 });
 
 app.post(("/settings"), function (req, res) {
    settingsBill.setSettings ({callCost: req.body.callCost,
                             smsCost: req.body.smsCost,
-                        warningLevel : req.body.warningLevel,
-                        criticalLevel : req.body.criticalLevel});
+                            warningLevel : req.body.warningLevel,
+                            criticalLevel : req.body.criticalLevel});
     
     console.log(settingsBill.getSettings());
 
