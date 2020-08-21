@@ -113,7 +113,24 @@ let billWithSettingsFunction = function(){
      else if (action ==="call"){
         cost = callCost;
     }
+    actionList.push({
+        type:action,
+        cost,
+        timestamp: new Date()
+    })
  };
+
+ var totals = function(){
+     let smsTotal = newSmsTotal();
+     let callTotal = newCallTotal();
+     let grandTotal = smsTotal + callTotal;
+        
+     return{
+            smsTotal,
+            callTotal,
+            grandTotal,
+        }
+ }
 
 
 
@@ -138,6 +155,7 @@ return{
     setSettings,
     getSettings,
     recordAction,
+    totals,
 }
 };
 
