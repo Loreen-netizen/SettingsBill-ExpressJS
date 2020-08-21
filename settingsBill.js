@@ -86,7 +86,7 @@ let billWithSettingsFunction = function(){
       smsCost = Number(settings.smsCost);
       callCost = Number(settings.callCost);
       warningLevel = settings.warningLevel;
-      criticalLevel = settings.criticalLevels;
+      criticalLevel = settings.criticalLevel;
 
     }
  var getSettings= function(){

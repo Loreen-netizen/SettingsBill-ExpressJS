@@ -23,8 +23,11 @@ app.get(("/"), function (req, res) {
 });
 
 app.post(("/settings"), function (req, res) {
+   settingsBill.setSettings ({callCost: req.body.callCost,
+                            smsCost: req.body.smsCost,
+                        warningLevel : req.body.warningLevel,
+                        criticalLevel : req.body.criticalLevel});
     
-    settingsBill.setSettings({callCost: req.body.callCost});
     console.log(settingsBill.getSettings());
 
     res.redirect("/")
