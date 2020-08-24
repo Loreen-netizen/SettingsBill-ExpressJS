@@ -131,5 +131,37 @@ describe("billWithSettingsFunction", function () {
     // });
 
 
+ it("should return grand total", function () {
+        var billWithSettings15 = billWithSettingsFunction();
 
+        
+      billWithSettings15.setSmsCost(1);
+      billWithSettings15.setCallCost(3);
+      billWithSettings15.setWarningLevel(15);
+      billWithSettings15.setCriticalLevel(20);
+
+      billWithSettings15.forEachSmsAdd();
+      billWithSettings15.forEachCallAdd();
+      billWithSettings15.forEachCallAdd();
+
+        assert.deepEqual( 7, billWithSettings15.updateTotalCost());
+
+    });
+
+    it("should return call, sms and grand totals", function () {
+        var billWithSettings15 = billWithSettingsFunction();
+
+        
+      billWithSettings15.setSmsCost(1);
+      billWithSettings15.setCallCost(3);
+      billWithSettings15.setWarningLevel(15);
+      billWithSettings15.setCriticalLevel(20);
+
+      billWithSettings15.forEachSmsAdd();
+      billWithSettings15.forEachCallAdd();
+      billWithSettings15.forEachCallAdd();
+
+        assert.deepEqual( 7, billWithSettings15.totals());
+
+    });
 });

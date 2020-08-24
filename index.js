@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const SettingsBill = require("./settingsBill")
 const settingsBill = SettingsBill();
-app.engine('handlebars', handlebars({ defaultLayout: './views/layouts/main' }));
+app.engine('handlebars', handlebars({ defaultLayout: './main' }));
 app.set('view engine', 'handlebars');
 
 let PORT = process.env.PORT || 3508;
@@ -13,7 +13,8 @@ app.listen(PORT, function () {
     console.log("App starting on port", PORT)
 });
 
-app.use(express.static("public"));
+app.use(express.static('public'));
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -22,6 +23,7 @@ app.get(("/"), function (req, res) {
     res.render("index",{
         settings:settingsBill.getSettings(),
         totals:settingsBill.totals(),
+        code:settingsBill.colors(),
     }
     );
 });
@@ -39,14 +41,17 @@ app.post(("/settings"), function (req, res) {
 
 app.post(("/action"), function (req, res) {
     console.log(req.body.actionType)
+    
     settingsBill.recordAction(req.body.actionType);
+    
+    console.log(settingsBill.newSmsTotal())
     res.redirect("/")
 });
 
 app.get(("/actions"), function (req, res) {
-
+  res.render("actions", {actions: settingsBill.actions()});
 });
 
 app.get(("/actions/:type"), function (req, res) {
-
+    res.render("actions", {actions: settingsBill.actions()});
 });

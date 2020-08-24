@@ -120,19 +120,51 @@ let billWithSettingsFunction = function(){
     })
  };
 
- var totals = function(){
-     let smsTotal = newSmsTotal();
-     let callTotal = newCallTotal();
-     let grandTotal = smsTotal + callTotal;
+ var setValues = function(action){
+     let total = 0;
+    for(let i = 0 ; i < actionList.length; i++){
+        if(actionList[i].type === action){
+         total+= actionList[i].cost
+        }
         
+    }
+    return total; 
+
+     };
+
+     var grandTotal = function(){
+     var overallTotal = setValues("sms") + setValues ("call");
+    //  console.log(colors());
+     
+     return overallTotal;
+     };
+
+     var colors = function(){
+     if(grandTotal() >= criticalLevel){
+        return "danger"
+          }
+     else if(grandTotal() >= warningLevel){
+        return "warning"
+
+    }
+     };
+ 
+
+ var totals = function(){
+     let smsTotal = setValues("sms");
+     let callTotal = setValues("call");
+     
      return{
             smsTotal,
             callTotal,
-            grandTotal,
+            grandTotal: grandTotal(),
+            color: colors(),
         }
  }
 
-
+var actions = function(){
+    return actionList
+}
 
 
 
@@ -156,6 +188,10 @@ return{
     getSettings,
     recordAction,
     totals,
+    setValues,
+    grandTotal,
+    colors,
+    actions,
 }
 };
 
