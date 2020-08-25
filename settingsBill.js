@@ -166,6 +166,19 @@ var actions = function(){
     return actionList
 }
 
+var actionsFor = function(type){
+let filteredActions = [];
+
+for(let i=0;i< actionList.length;i++){
+    let action = actionList[i];
+    console.log(actionList[i]);
+    if(action.type === type){
+        filteredActions.push(action);
+    }
+}
+return filteredActions
+};
+
 
 
 return{
@@ -192,6 +205,7 @@ return{
     grandTotal,
     colors,
     actions,
+    actionsFor,
 }
 };
 
