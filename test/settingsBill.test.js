@@ -123,13 +123,6 @@ describe("billWithSettingsFunction", function () {
     });
 
 
-    // it("should set call and sms cost, warning and critical level", function () {
-    //     var billWithSettings14 = billWithSettingsFunction();
-    //     // var callSetting = billWithSettings14.setSettings(2);
-    //     assert.equal(2,4,6,8 , billWithSettings14.getSettings(2,4,6,8))
-
-    // });
-
 
  it("should return grand total", function () {
         var billWithSettings15 = billWithSettingsFunction();
@@ -148,20 +141,5 @@ describe("billWithSettingsFunction", function () {
 
     });
 
-    it("should return grand total", function () {
-        var billWithSettings15 = billWithSettingsFunction();
-
-        
-      billWithSettings15.setSmsCost(1);
-      billWithSettings15.setCallCost(3);
-      billWithSettings15.setWarningLevel(15);
-      billWithSettings15.setCriticalLevel(20);
-
-      billWithSettings15.forEachSmsAdd();
-      billWithSettings15.forEachCallAdd();
-      billWithSettings15.forEachCallAdd();
-
-        assert.equal( 7, billWithSettings15.updateTotalCost());
-
-    });
+    
 });
