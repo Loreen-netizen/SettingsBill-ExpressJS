@@ -124,22 +124,37 @@ describe("billWithSettingsFunction", function () {
 
 
 
- it("should return grand total", function () {
+    it("should return grand total", function () {
         var billWithSettings15 = billWithSettingsFunction();
 
-        
-      billWithSettings15.setSmsCost(1);
-      billWithSettings15.setCallCost(3);
-      billWithSettings15.setWarningLevel(15);
-      billWithSettings15.setCriticalLevel(20);
 
-      billWithSettings15.forEachSmsAdd();
-      billWithSettings15.forEachCallAdd();
-      billWithSettings15.forEachCallAdd();
+        billWithSettings15.setSmsCost(1);
+        billWithSettings15.setCallCost(3);
+        billWithSettings15.setWarningLevel(15);
+        billWithSettings15.setCriticalLevel(20);
 
-        assert.deepEqual( 7, billWithSettings15.updateTotalCost());
+        billWithSettings15.forEachSmsAdd();
+        billWithSettings15.forEachCallAdd();
+        billWithSettings15.forEachCallAdd();
+
+        assert.deepEqual(7, billWithSettings15.updateTotalCost());
 
     });
 
-    
+    // it("should change class color to red when critical level of R5 is reached for 3 calls at R3 each", function () {
+
+    //     var billWithSettings12 = billWithSettingsFunction();
+    //     billWithSettings12.setSmsCost(1);
+    //     billWithSettings12.setCallCost(3);
+    //     var warning = billWithSettings12.setWarningLevel(10);
+    //     var critical = billWithSettings12.setCriticalLevel(5);
+
+    //     billWithSettings12.forEachCallAdd();
+    //     billWithSettings12.forEachCallAdd();
+    //     billWithSettings12.forEachCallAdd();
+    //     var totalCost = billWithSettings12.updateTotalCost();
+
+    //     assert.equal("danger", billWithSettings12.colors(totalCost, warning, critical))
+
+    // });
 });
