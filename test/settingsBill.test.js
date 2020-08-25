@@ -148,7 +148,7 @@ describe("billWithSettingsFunction", function () {
 
     });
 
-    it("should return call, sms and grand totals", function () {
+    it("should return grand total", function () {
         var billWithSettings15 = billWithSettingsFunction();
 
         
@@ -161,7 +161,7 @@ describe("billWithSettingsFunction", function () {
       billWithSettings15.forEachCallAdd();
       billWithSettings15.forEachCallAdd();
 
-        assert.deepEqual( 7, billWithSettings15.totals());
+        assert.equal( 7, billWithSettings15.updateTotalCost());
 
     });
 });
