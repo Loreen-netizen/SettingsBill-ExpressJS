@@ -1,13 +1,13 @@
-const express = require("express");
-const handlebars = require("express-handlebars");
-const bodyParser = require("body-parser");
-const app = express();
-const SettingsBill = require("./settingsBill")
-const settingsBill = SettingsBill();
+let express = require("express");
+let handlebars = require("express-handlebars");
+let bodyParser = require("body-parser");
+let app = express();
+let SettingsBill = require("./settingsBill")
+let settingsBill = SettingsBill();
 app.engine('handlebars', handlebars({ layoutsDir: "./views/layouts" }));
-// /views/layouts/
 app.set('view engine', 'handlebars');
-
+let moment = require("moment");
+    moment().format();
 let PORT = process.env.PORT || 3508;
 
 app.listen(PORT, function () {
@@ -25,6 +25,7 @@ app.get(("/"), function (req, res) {
         settings: settingsBill.getSettings(),
         totals: settingsBill.totals(),
         code: settingsBill.colors(),
+      
     }
     );
 });
@@ -51,10 +52,18 @@ app.post(("/action"), function (req, res) {
 });
 
 app.get(("/actions"), function (req, res) {
-    res.render("actions", { actions: settingsBill.actions() });
+    var action = settingsBill.actions();
+    for (let props of action){
+props.ago = moment(props.timeStamp).fromNow()
+    }
+    res.render("actions", { actions: action });
 });
-// 123
+
 app.get(("/actions/:actionType"), function (req, res) {
-    const actionType = req.params.actionType;
-    res.render("actions", {actions: settingsBill.actionsFor(actionType)});
+    let actionType = req.params.actionType;
+    let actionList = settingsBill.actionsFor(actionType);
+    for (let props of actionList){
+        props.ago = moment(props.timeStamp).fromNow();
+    }
+    res.render("actions", { actions: actionList });
 });
