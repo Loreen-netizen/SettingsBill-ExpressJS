@@ -87,13 +87,6 @@ let billWithSettingsFunction = function () {
         
     };
 
-//     var time = function(){
-//         let action = actions ();
-// for (let timestamp in action){
-//     console.log(timestamp.value)
-//     return timestamp.value
-// }
-//     };
 
     var setValues = function (action) {
         let total = 0;
@@ -190,7 +183,6 @@ let billWithSettingsFunction = function () {
         actionsFor,
         hasReachedCriticalLevel,
         hasReachedWarningLevel,
-        // time,
     }
 };
 
