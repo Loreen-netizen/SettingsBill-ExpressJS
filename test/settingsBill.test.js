@@ -4,18 +4,6 @@ let assert = require("assert");
 describe("billWithSettingsFunction", function () {
     
 
-    it("should prevent any new costs from being added when total cost exceeds critical level of R10", function () {
-        let billWithSettings = billWithSettingsFunction();
-        billWithSettings.setCriticalLevel(10);
-        billWithSettings.setCallCost(4.00);
-        billWithSettings.forEachCallAdd();
-        billWithSettings.forEachCallAdd();
-        billWithSettings.forEachCallAdd();
-        assert.equal("critical", billWithSettings.theCriticalLevel())
-
-    });
-
-
     it('should be able to record calls', function(){
         let billWithSettings = billWithSettingsFunction()
         billWithSettings.recordAction('call');

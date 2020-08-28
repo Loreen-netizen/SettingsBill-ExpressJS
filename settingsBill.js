@@ -1,52 +1,10 @@
 let billWithSettingsFunction = function () {
 
-    let callCostSetting = 0;
-    let smsCostSetting = 0;
-    let totalCallCost = 0;
-    let totalSmsCost = 0;
-    let criticalSetting = 0;
     let smsCost;
     let callCost;
     let warningLevel;
     let criticalLevel;
     let actionList = [];
-
-    let setCallCost = function (callCost) {
-        callCostSetting = callCost;
-    }
-
-
-    let setSmsCost = function (smsCost) {
-        smsCostSetting = smsCost;
-    }
-
-
-    let forEachCallAdd = function () {
-        totalCallCost += callCostSetting;
-
-    }
-
-
-
-    let updateTotalCost = function () {
-        return totalCallCost + totalSmsCost;
-    }
-
-
-    let setCriticalLevel = function (criticalValue) {
-        criticalSetting = criticalValue;
-
-    }
-
-    let upDateCritical = function () {
-
-        return criticalSetting;
-    }
-
-    var theCriticalLevel = function () {
-        if (updateTotalCost() >= upDateCritical())
-            return "critical"
-    }
 
 
     var setSettings = function (settings) {
@@ -155,7 +113,6 @@ let billWithSettingsFunction = function () {
 
         for (let i = 0; i < actionList.length; i++) {
             let action = actionList[i];
-            // console.log(actionList[i]);
             if (action.type === type) {
                 filteredActions.push(action);
             }
@@ -166,13 +123,7 @@ let billWithSettingsFunction = function () {
 
 
     return {
-        setCallCost,
-        setSmsCost,
-        forEachCallAdd,
-        updateTotalCost,
-        setCriticalLevel,
-        upDateCritical,
-        theCriticalLevel,
+       
         setSettings,
         getSettings,
         recordAction,
