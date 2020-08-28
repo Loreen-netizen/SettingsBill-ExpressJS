@@ -86,6 +86,10 @@ let billWithSettingsFunction = function () {
         }
         
     };
+    var actions = function () {
+        return actionList
+    }
+
 
 
     var setValues = function (action) {
@@ -143,10 +147,7 @@ let billWithSettingsFunction = function () {
 
 
 
-    var actions = function () {
-        return actionList
-    }
-
+    
    
 
     var actionsFor = function (type) {
